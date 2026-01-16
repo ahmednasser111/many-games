@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Memory Game</title>
+  </head>
+  <body>
+    <nav>
+      <!-- <i class="fa-solid fa-brain"></i> -->
+      <p><span>Memory</span> Game</p>
+      <!-- <i class="fa-solid fa-star"></i> -->
+    </nav>
+    <div id="settings-cont">
+      <i id="settings-btn" class="fa-solid fa-gear"></i>
+      <i id="leader-btn" class="fa-solid fa-award"></i>
+    </div>
+    <div id="pre-game">
+      <div id="empty-grid">
+        <i class="fa-solid fa-brain"></i>
+        <h2>Ready to Play?</h2>
+        <p>
+          Configure your game settings in the panel and click "Start Game" to
+          begin. Match all pairs before time runs out!
+        </p>
+      </div>
+      <button id="start">Start Game</button>
+    </div>
+    <div id="game-play-ui">
+      <div id="game-grid"></div>
+    </div>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
