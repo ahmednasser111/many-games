@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tic Tac Toe</title>
+		<link rel="stylesheet" href="tic-tac-toe.css" />
+	</head>
+	<body>
+		<main role="main" aria-label="Tic Tac Toe">
+			<div class="container" role="region" aria-label="Game">
+				<h1>❌ Tic Tac Toe ⭕</h1>
+
+				<div class="mode-select" role="group" aria-label="Mode Select">
+					<button
+						class="mode-btn active"
+						data-mode="2player"
+						aria-pressed="true">
+						2 Players
+					</button>
+					<button class="mode-btn" data-mode="ai" aria-pressed="false">
+						vs AI
+					</button>
+				</div>
+
+				<div class="score" role="region" aria-label="Scores">
+					<div class="score-item">
+						<div class="score-label">X Wins</div>
+						<div class="score-value" id="x-score">0</div>
+					</div>
+					<div class="score-item">
+						<div class="score-label">Draws</div>
+						<div class="score-value" id="draw-score">0</div>
+					</div>
+					<div class="score-item">
+						<div class="score-label">O Wins</div>
+						<div class="score-value" id="o-score">0</div>
+					</div>
+				</div>
+
+				<div class="status" id="status" aria-live="polite">Player X's turn</div>
+				<div class="board" id="board"></div>
+
+				<div class="controls" role="group" aria-label="Game Controls">
+					<button class="btn-primary" id="reset">New Game</button>
+					<button class="btn-secondary" id="reset-scores">Reset Scores</button>
+				</div>
+			</div>
+
+			<div class="home-link">
+				<a href="../../../index.html" aria-label="Back to Games"
+					>← Back to Games</a
+				>
+			</div>
+		</main>
+		<script src="tic-tac-toe.js" defer></script>
+	</body>
+</html>

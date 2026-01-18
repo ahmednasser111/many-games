@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Games Hub</title>
+		<link rel="stylesheet" href="assets/css/style.css" />
+	</head>
+	<body>
+		<header>
+			<h1 class="visually-hidden">Games Hub</h1>
+		</header>
+		<main role="main" aria-label="Games Hub">
+			<div class="container" role="region" aria-label="Available Games">
+				<h1>🎮 Games Hub</h1>
+				<p class="subtitle">Choose your game and have fun!</p>
+
+				<div class="games-grid" role="list">
+					<a
+						href="src/games/tic-tac-toe/tic-tac-toe.html"
+						class="game-card"
+						role="listitem"
+						aria-describedby="ttt-desc">
+						<div class="game-icon">❌⭕</div>
+						<div class="game-title">Tic Tac Toe</div>
+						<div class="game-description" id="ttt-desc">
+							Classic 3x3 grid game. Play against a friend or AI!
+						</div>
+					</a>
+
+					<a
+						href="src/games/memory_game/memoryGame.html"
+						class="game-card"
+						role="listitem"
+						aria-describedby="memory-desc">
+						<div class="game-icon">🧠</div>
+						<div class="game-title">Memory Game</div>
+						<div class="game-description" id="memory-desc">
+							Test your memory by matching pairs of cards!
+						</div>
+					</a>
+
+					<div
+						class="game-card coming-soon"
+						role="listitem"
+						aria-disabled="true"
+						aria-describedby="more-desc">
+						<div class="game-icon">🎲</div>
+						<div class="game-title">More Games</div>
+						<div class="game-description" id="more-desc">
+							More exciting games coming soon!
+						</div>
+						<span class="badge">Coming Soon</span>
+					</div>
+				</div>
+			</div>
+		</main>
+		<script src="assets/js/main.js" defer></script>
+	</body>
+</html>
