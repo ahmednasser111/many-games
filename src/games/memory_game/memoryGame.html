@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,9 +15,7 @@
   </head>
   <body>
     <nav>
-      <!-- <i class="fa-solid fa-brain"></i> -->
       <p><span>Memory</span> Game</p>
-      <!-- <i class="fa-solid fa-star"></i> -->
     </nav>
     <div id="settings-cont">
       <i id="settings-btn" class="fa-solid fa-gear"></i>
@@ -35,8 +33,86 @@
       <button id="start">Start Game</button>
     </div>
     <div id="game-play-ui">
+      <div id="game-info">
+        <div class="info-cont" id="time-cont">
+          <div class="text-info">
+            <div class="time-content" id="elapsed-time">
+              <i class="fa-regular fa-clock"></i>
+              <p>Time Elapsed</p>
+              <p class="time">00:00</p>
+            </div>
+            <div class="time-content" id="time-left">
+              <i class="fa-regular fa-clock"></i>
+              <p>Time Left</p>
+              <p class="time">00:00</p>
+            </div>
+          </div>
+          <div class="progress">
+            <span></span>
+          </div>
+        </div>
+        <div class="info-cont" id="lives-cont">
+          <div class="lives-content">
+            <p>Lives</p>
+            <i class="fa-solid fa-heart"></i>
+            <p id="lives-count">x0</p>
+          </div>
+        </div>
+      </div>
       <div id="game-grid"></div>
+      <div id="game-end" class="hide">
+        <div class="game-end-bg">
+          <div id="game-end-icon-cont">
+            <i class="fa-regular fa-face-frown"></i>
+          </div>
+          <p id="game-end-title">Game Over</p>
+          <p id="game-end-msg">Better Luck Next Time</p>
+          <div id="game-end-info-row">
+            <div class="game-end-info-item-cont" id="game-end-time">
+              <i class="fa-regular fa-clock"></i>
+              <p class="game-end-val">00:00</p>
+              <p class="game-end-label">Time</p>
+            </div>
+            <div class="game-end-info-item-cont" id="game-end-mistakes">
+              <i class="fa-regular fa-circle-xmark"></i>
+              <p class="game-end-val">0</p>
+              <p class="game-end-label">Mistakes</p>
+            </div>
+            <div class="game-end-info-item-cont" id="game-end-score">
+              <i class="fa-solid fa-trophy"></i>
+              <p class="game-end-val">0</p>
+              <p class="game-end-label">Score</p>
+            </div>
+          </div>
+          <button id="play-again">
+            <i class="fa-solid fa-rotate-right"></i>
+            Play Again
+          </button>
+        </div>
+      </div>
     </div>
-    <script src="./js/script.js"></script>
+    <div id="settings-dialog-bg">
+      <div id="settings-dialog">
+        <div class="settings-input-title">
+          <i class="fa-solid fa-table-cells"></i>
+          <p>Grid Size</p>
+        </div>
+        <div id="grid-options-row">
+          <span value="2">2x2</span>
+          <span value="4">4x4</span>
+          <span value="6">6x6</span>
+        </div>
+        <div class="settings-input-title">
+          <i class="fa-regular fa-clock"></i>
+          <p>Time Limit</p>
+        </div>
+        <input type="range" />
+        <div class="settings-input-title">
+          <i class="fa-regular fa-heart"></i>
+          <p>Lives</p>
+        </div>
+      </div>
+    </div>
+    <script src="./js/script.js" type="module"></script>
   </body>
 </html>
