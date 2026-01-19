@@ -1,6 +1,14 @@
 import { gameData } from "./game-data.js";
 import { elements } from "./listeners.js";
-import { getImgs, startGame, tick, toClock, endGame } from "./utils.js";
+import { getLeaderBoard, removeFromLeaderBoard } from "./leaderboard.js";
+import {
+  getImgs,
+  startGame,
+  tick,
+  toClock,
+  endGame,
+  formatDateDDMMYYYY,
+} from "./utils.js";
 export function buildGrid(size) {
   buildInfo();
   let grid = resizeGrid();
@@ -13,7 +21,7 @@ export function buildGrid(size) {
   grid.scrollIntoView({ behavior: "smooth" });
   setTimeout(() => {
     startGame(tick);
-  }, 1000);
+  }, 5000);
 }
 
 export function buildInfo() {
@@ -136,4 +144,87 @@ export function getCardImg(card) {
 export function buildLeaderBoard() {
   let leaderBoard = document.getElementById("leader-dialog-bg");
   leaderBoard.classList.remove("hide");
+  let leaderBoardData = getLeaderBoard();
+  let i = 1;
+  let leaderBoardList = document.getElementById("leader-dialog");
+  leaderBoardList.querySelectorAll(".leader-entry").forEach((e) => {
+    e.remove();
+  });
+  leaderBoardData.forEach((e) => {
+    const entry = document.createElement("div");
+    entry.className = "leader-entry";
+
+    const leaderNum = document.createElement("div");
+    leaderNum.className = "leader-num";
+    leaderNum.textContent = `#${i++}`;
+
+    const userCont = document.createElement("div");
+    userCont.className = "leader-user-cont";
+
+    const userP = document.createElement("p");
+    userP.className = "leader-user";
+    userP.textContent = e.username;
+
+    const dateP = document.createElement("p");
+    dateP.className = "leader-date leader-sec-text";
+    dateP.textContent = formatDateDDMMYYYY(e.date);
+
+    const gridDiv = document.createElement("div");
+    gridDiv.className = "leader-grid-size leader-sec-text";
+
+    const gridIcon = document.createElement("i");
+    gridIcon.className = "fa-solid fa-table-cells";
+
+    const gridP = document.createElement("p");
+    gridP.textContent = e.size;
+
+    gridDiv.append(gridIcon, gridP);
+    userCont.append(userP, dateP, gridDiv);
+
+    const timeDiv = document.createElement("div");
+    timeDiv.className = "leader-sec-text";
+
+    const timeIcon = document.createElement("i");
+    timeIcon.className = "fa-regular fa-clock";
+
+    const timeP = document.createElement("p");
+    timeP.className = "leader-time-taken";
+    timeP.textContent = toClock(e.time);
+
+    timeDiv.append(timeIcon, timeP);
+
+    const mistakesDiv = document.createElement("div");
+    mistakesDiv.className = "leader-sec-text";
+
+    const mistakesIcon = document.createElement("i");
+    mistakesIcon.className = "fa-regular fa-circle-xmark";
+
+    const mistakesP = document.createElement("p");
+    mistakesP.className = "leader-mistakes";
+    mistakesP.textContent = e.mistakes;
+
+    mistakesDiv.append(mistakesIcon, mistakesP);
+
+    const scoreP = document.createElement("p");
+    scoreP.className = "leader-score";
+    scoreP.textContent = e.getScore();
+
+    const deleteB = document.createElement("i");
+    deleteB.className = "fa-solid fa-trash delete-leader-entry";
+    deleteB.addEventListener("click", () => {
+      let e = entry.nextSibling;
+      while (e) {
+        let num = e.querySelector(".leader-num");
+        num.textContent = `#${+num.textContent.substring(1) - 1}`;
+        e = e.nextSibling;
+      }
+      removeFromLeaderBoard(
+        +entry.querySelector(".leader-num").textContent.substring(1) - 1,
+      );
+      entry.remove();
+    });
+
+    entry.append(leaderNum, userCont, timeDiv, mistakesDiv, scoreP, deleteB);
+    leaderBoardList.append(entry);
+  });
 }

@@ -1,16 +1,20 @@
 import { gameData, initGameSettings } from "./game-data.js";
 import { elements } from "./listeners.js";
 import { showEndDialog, buildGrid } from "./ui-build.js";
-import { LeaderBoard } from "./leaderboard.js";
+import { LeaderBoard, addToLeaderBoard } from "./leaderboard.js";
 export function getImgs() {
+  let imgs = [];
   let imgsLeft = (gameData.size * gameData.size) / 2 - gameData.userImgs.length;
-  gameData.userImgs = shuffle(gameData.userImgs);
   if (imgsLeft > 0) {
-    gameData.userImgs = gameData.userImgs.concat(
-      shuffle(gameData.images).slice(0, imgsLeft),
-    );
+    // gameData.userImgs = gameData.userImgs.concat(
+    //   shuffle(gameData.images).slice(0, imgsLeft),
+    // );
+    imgs = [
+      ...shuffle(gameData.userImgs),
+      ...shuffle(gameData.images).slice(0, imgsLeft),
+    ];
   }
-  return shuffle(gameData.userImgs.concat(gameData.userImgs));
+  return shuffle([...imgs, ...imgs]);
 }
 
 export function shuffle(array) {
@@ -35,11 +39,10 @@ export function endGame(isWin) {
     gameData.username,
     gameData.lives - gameData.livesRemain,
     gameData.timeElapsed,
-    gameData.size,
+    +gameData.size,
     !isWin,
   );
-  console.log(leaderBoard);
-  console.log(leaderBoard.getScore());
+  addToLeaderBoard(leaderBoard);
   showEndDialog(isWin);
 }
 
@@ -49,6 +52,7 @@ export function restartGame() {
 }
 
 export function tick() {
+  clearInterval(gameData.timer);
   gameData.timer = setInterval(() => {
     gameData.timeElapsed++;
     document.querySelector("#elapsed-time .time").textContent = toClock(
@@ -67,4 +71,14 @@ export function toClock(seconds) {
   let minutes = Math.floor(seconds / 60);
   let remainingSeconds = Math.floor(seconds % 60);
   return `${minutes.toString().padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
+}
+
+export function formatDateDDMMYYYY(date) {
+  const d = new Date(date);
+
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const year = d.getFullYear();
+
+  return `${day}/${month}/${year}`;
 }

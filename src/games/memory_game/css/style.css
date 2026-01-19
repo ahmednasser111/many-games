@@ -486,7 +486,13 @@ nav i:nth-child(3) {
   align-items: center;
   gap: 5px;
 }
-.leader-user {
+.leader-user-cont {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.leader-user,
+.leader-num {
   font-weight: bold;
   color: var(--text-color);
 }
@@ -494,4 +500,11 @@ nav i:nth-child(3) {
   display: flex;
   gap: 2px;
   color: var(--secondary-text-color);
+}
+.leader-score {
+  color: #ffcc33;
+}
+.delete-leader-entry {
+  cursor: pointer;
+  color: palevioletred;
 }
