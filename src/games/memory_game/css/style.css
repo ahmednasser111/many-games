@@ -181,6 +181,10 @@ nav i:nth-child(3) {
 .card-front {
   background-color: #153438;
 }
+.card-back img {
+  height: 100%;
+  width: 100%;
+}
 .card-front i {
   width: 50px;
   height: 50px;
@@ -364,7 +368,7 @@ nav i:nth-child(3) {
 }
 
 /* SETTIGNS */
-#settings-dialog-bg {
+.dialog-bg {
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -375,11 +379,34 @@ nav i:nth-child(3) {
   align-items: center;
   justify-content: center;
 }
-#settings-dialog {
+.dialog-bg.hide {
+  display: none;
+}
+.dialog {
   background-color: var(--secondary-color);
   padding: 20px;
   border-radius: 10px;
   border: 1px solid var(--border-color);
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  width: 80%;
+  max-width: 400px;
+}
+.close-dialog {
+  width: 30px;
+  height: 30px;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  outline: none;
+  border: 2px solid var(--border-color);
+  color: var(--text-color);
+  font-size: 20px;
+  cursor: pointer;
 }
 #settings-dialog .settings-input-title {
   display: flex;
@@ -412,12 +439,59 @@ nav i:nth-child(3) {
   height: 10px;
   border-radius: 50px;
   outline: none;
+  background-image: linear-gradient(
+    to right,
+    var(--main-color) 0%,
+    var(--secondary-text-color) 0%
+  );
 }
-#settings-dialog input[type="range"]::-moz-range-thumb {
+#settings-dialog #lives-input {
+  background-image: linear-gradient(
+    to right,
+    var(--main-color),
+    var(--main-color)
+  );
+}
+#settings-dialog input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
   width: 18px;
   height: 18px;
-  background: #4f46e5;
+  background: var(--back-color);
+  border: 3px solid var(--main-color);
   border-radius: 50%;
   cursor: pointer;
-  border: none;
+  outline: 3px solid var(--back-color);
+}
+.settings-row-value {
+  flex: 1;
+  text-align: end;
+}
+#time-settings .settings-row-value {
+  color: var(--main-color);
+}
+#lives-settings .settings-row-value {
+  color: red;
+}
+
+/* LEADERBOARD */
+#leader-dialog {
+  overflow-x: scroll;
+}
+#leader-dialog::-webkit-scrollbar {
+  display: none;
+}
+.leader-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+.leader-user {
+  font-weight: bold;
+  color: var(--text-color);
+}
+.leader-sec-text {
+  display: flex;
+  gap: 2px;
+  color: var(--secondary-text-color);
 }
