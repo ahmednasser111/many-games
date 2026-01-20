@@ -5,14 +5,9 @@ import { LeaderBoard, addToLeaderBoard } from "./leaderboard.js";
 export function getImgs() {
   let imgs = [];
   let imgsLeft = (gameData.size * gameData.size) / 2 - gameData.userImgs.length;
+  imgs = shuffle(gameData.userImgs);
   if (imgsLeft > 0) {
-    // gameData.userImgs = gameData.userImgs.concat(
-    //   shuffle(gameData.images).slice(0, imgsLeft),
-    // );
-    imgs = [
-      ...shuffle(gameData.userImgs),
-      ...shuffle(gameData.images).slice(0, imgsLeft),
-    ];
+    imgs = [...imgs, ...shuffle(gameData.images).slice(0, imgsLeft)];
   }
   return shuffle([...imgs, ...imgs]);
 }

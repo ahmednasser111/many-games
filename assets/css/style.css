@@ -2,126 +2,137 @@
    Layout
    ======================================== */
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-	min-height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
 .container {
-	text-align: center;
-	max-width: 900px;
-	width: 100%;
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
 }
 
 /* ========================================
    Typography
    ======================================== */
 h1 {
-	color: white;
-	font-size: 3em;
-	margin-bottom: 20px;
-	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 3em;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .visually-hidden {
-	position: absolute !important;
-	clip: rect(1px, 1px, 1px, 1px);
-	clip-path: inset(50%);
-	width: 1px;
-	height: 1px;
-	overflow: hidden;
-	white-space: nowrap;
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .subtitle {
-	color: rgba(255, 255, 255, 0.9);
-	font-size: 1.2em;
-	margin-bottom: 50px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2em;
+  margin-bottom: 50px;
 }
-
+#open-settings {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 30px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  color: white;
+}
 /* ========================================
    Components
    ======================================== */
 .games-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-	gap: 30px;
-	margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
 }
 
 .game-card {
-	background: white;
-	border-radius: 15px;
-	padding: 40px 30px;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
-	cursor: pointer;
-	text-decoration: none;
-	color: inherit;
-	display: block;
-	will-change: transform;
+  background: white;
+  border-radius: 15px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  will-change: transform;
 }
 .game-card:hover {
-	transform: translateY(-10px);
-	box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .game-icon {
-	font-size: 4em;
-	margin-bottom: 20px;
+  font-size: 4em;
+  margin-bottom: 20px;
 }
 
 .game-title {
-	font-size: 1.5em;
-	font-weight: bold;
-	color: #333;
-	margin-bottom: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
 }
 
 .game-description {
-	color: #666;
-	font-size: 0.95em;
-	line-height: 1.5;
+  color: #666;
+  font-size: 0.95em;
+  line-height: 1.5;
 }
 
 .coming-soon {
-	opacity: 0.6;
-	cursor: not-allowed;
-	pointer-events: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .badge {
-	display: inline-block;
-	background: #ffd700;
-	color: #333;
-	padding: 5px 15px;
-	border-radius: 20px;
-	font-size: 0.8em;
-	margin-top: 10px;
-	font-weight: bold;
+  display: inline-block;
+  background: #ffd700;
+  color: #333;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  margin-top: 10px;
+  font-weight: bold;
 }
 
 /* ========================================
    Responsive
    ======================================== */
 @media (max-width: 600px) {
-	h1 {
-		font-size: 2.2em;
-	}
-	.game-icon {
-		font-size: 3em;
-	}
-	.game-card {
-		padding: 30px 20px;
-	}
+  h1 {
+    font-size: 2.2em;
+  }
+  .game-icon {
+    font-size: 3em;
+  }
+  .game-card {
+    padding: 30px 20px;
+  }
 }

@@ -19,7 +19,7 @@ export function buildGrid(size) {
   document.getElementById("pre-game").classList.add("playing");
   document.getElementById("game-play-ui").classList.add("playing");
   grid.scrollIntoView({ behavior: "smooth" });
-  setTimeout(() => {
+  gameData.startGameTimer = setTimeout(() => {
     startGame(tick);
   }, 5000);
 }

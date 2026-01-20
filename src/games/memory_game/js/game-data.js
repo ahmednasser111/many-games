@@ -14,6 +14,7 @@ export const gameData = {
   timer: undefined,
   score: undefined,
   username: undefined,
+  startGameTimer: undefined,
 };
 
 export function initGameSettings() {
@@ -27,9 +28,9 @@ export function initGameSettings() {
   for (let i = 1; i <= 18; i++) {
     gameData.images.push(`./images/grid/${i}.jfif`);
   }
-  gameData.userImgs = [
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxIgvIrw7Cdcd18NDXo9PX6oRpNo8H5q6_Hw&s",
-  ];
+  gameData.userImgs = JSON.parse(
+    window.localStorage.getItem("mem-userImgs") || "[]",
+  );
   gameData.timeLimitSeconds = Cookies.get("timeLimit") || 0;
   gameData.timeElapsed = 0;
   gameData.lives = Cookies.get("lives") || 3;
@@ -40,4 +41,22 @@ export function initGameSettings() {
   gameData.flippedCard = undefined;
   gameData.score = 0;
   gameData.username = Cookies.get("username") || "Guest";
+}
+
+export function addUserImg() {
+  let imgUrl = (prompt("Enter Image URL") || "").trim();
+  if (imgUrl != "") {
+    gameData.userImgs.push(imgUrl);
+    window.localStorage.setItem(
+      "mem-userImgs",
+      JSON.stringify(gameData.userImgs),
+    );
+  }
+}
+export function removeUserImg(img) {
+  gameData.userImgs.splice(gameData.userImgs.indexOf(img), 1);
+  window.localStorage.setItem(
+    "mem-userImgs",
+    JSON.stringify(gameData.userImgs),
+  );
 }
