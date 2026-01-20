@@ -17,11 +17,11 @@
     <nav>
       <p><span>Memory</span> Game</p>
     </nav>
-    <div id="settings-cont">
-      <i id="settings-btn" class="fa-solid fa-gear"></i>
-      <i id="leader-btn" class="fa-solid fa-award"></i>
-    </div>
     <div id="pre-game">
+      <div id="settings-cont">
+        <i id="settings-btn" class="fa-solid fa-gear"></i>
+        <i id="leader-btn" class="fa-solid fa-award"></i>
+      </div>
       <div id="empty-grid">
         <i class="fa-solid fa-brain"></i>
         <h2>Ready to Play?</h2>
@@ -34,6 +34,9 @@
     </div>
     <div id="game-play-ui">
       <div id="game-info">
+        <div class="info-cont" id="back-to-home">
+          <i class="fa-regular fa-house"></i>
+        </div>
         <div class="info-cont" id="time-cont">
           <div class="text-info">
             <div class="time-content" id="elapsed-time">
@@ -91,8 +94,11 @@
         </div>
       </div>
     </div>
-    <div id="settings-dialog-bg">
-      <div id="settings-dialog">
+    <div id="settings-dialog-bg" class="dialog-bg hide">
+      <div id="settings-dialog" class="dialog">
+        <button id="close-settings" class="close-dialog">
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
         <div class="settings-input-title">
           <i class="fa-solid fa-table-cells"></i>
           <p>Grid Size</p>
@@ -102,17 +108,37 @@
           <span value="4">4x4</span>
           <span value="6">6x6</span>
         </div>
-        <div class="settings-input-title">
+        <div class="settings-input-title" id="time-settings">
           <i class="fa-regular fa-clock"></i>
           <p>Time Limit</p>
+          <p class="settings-row-value">00:00</p>
         </div>
-        <input type="range" />
-        <div class="settings-input-title">
+        <input type="range" id="time-input" min="0" max="100" value="0" />
+        <div class="settings-input-title" id="lives-settings">
           <i class="fa-regular fa-heart"></i>
           <p>Lives</p>
+          <p class="settings-row-value">5</p>
         </div>
+        <input type="range" id="lives-input" min="1" max="100" value="100" />
+        <button id="add-user-img">Add Image</button>
+        <div id="user-img-collection-cont"></div>
       </div>
     </div>
+
+    <div id="leader-dialog-bg" class="dialog-bg hide">
+      <div id="leader-dialog" class="dialog">
+        <button id="close-leader" class="close-dialog">
+          <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+      </div>
+    </div>
+
     <script src="./js/script.js" type="module"></script>
+    <script src="./js/game-data.js" type="module"></script>
+    <script src="./js/listeners.js" type="module"></script>
+    <script src="./js/ui-build.js" type="module"></script>
+    <script src="./js/utils.js" type="module"></script>
+    <script src="./js/settings-ui.js" type="module"></script>
+    <script src="../../common/cookies.js" type="module"></script>
   </body>
 </html>
