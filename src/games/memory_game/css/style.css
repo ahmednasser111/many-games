@@ -590,3 +590,21 @@ nav i:nth-child(3) {
   cursor: pointer;
   color: palevioletred;
 }
+
+.home-link {
+  text-align: center;
+  margin-top: 20px;
+}
+.home-link a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1em;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+.home-link a:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
