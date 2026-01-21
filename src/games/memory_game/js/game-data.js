@@ -12,9 +12,9 @@ export const gameData = {
   pairs: undefined,
   livesRemain: undefined,
   timer: undefined,
-  score: undefined,
   username: undefined,
   startGameTimer: undefined,
+  counter: undefined,
 };
 
 export function initGameSettings() {
@@ -35,7 +35,6 @@ export function initGameSettings() {
   gameData.livesRemain = gameData.lives;
   gameData.flipAllowed = true;
   gameData.flippedCard = undefined;
-  gameData.score = 0;
   gameData.username = Cookies.get("username") || "Guest";
 }
 

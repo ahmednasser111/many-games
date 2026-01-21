@@ -17,6 +17,7 @@
     <nav>
       <p><span>Memory</span> Game</p>
     </nav>
+    <p id="counter">0</p>
     <div id="pre-game">
       <div id="settings-cont">
         <i id="settings-btn" class="fa-solid fa-gear"></i>
@@ -81,16 +82,16 @@
               <p class="game-end-val">0</p>
               <p class="game-end-label">Mistakes</p>
             </div>
-            <div class="game-end-info-item-cont" id="game-end-score">
-              <i class="fa-solid fa-trophy"></i>
-              <p class="game-end-val">0</p>
-              <p class="game-end-label">Score</p>
-            </div>
           </div>
           <button id="play-again">
             <i class="fa-solid fa-rotate-right"></i>
             Play Again
           </button>
+          <div class="home-link">
+            <a href="../../../index.html" aria-label="Back to Games"
+              >← Back to Games</a
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -127,9 +128,14 @@
 
     <div id="leader-dialog-bg" class="dialog-bg hide">
       <div id="leader-dialog" class="dialog">
-        <button id="close-leader" class="close-dialog">
-          <i class="fa-regular fa-circle-xmark"></i>
-        </button>
+        <div id="leader-options">
+          <button id="clear-leader" class="close-dialog">
+            <i class="fa-solid fa-broom"></i>
+          </button>
+          <button id="close-leader" class="close-dialog">
+            <i class="fa-regular fa-circle-xmark"></i>
+          </button>
+        </div>
       </div>
     </div>
 
@@ -139,7 +145,6 @@
       >
     </div>
 
-    <script src="./js/script.js" type="module"></script>
     <script src="./js/game-data.js" type="module"></script>
     <script src="./js/listeners.js" type="module"></script>
     <script src="./js/ui-build.js" type="module"></script>

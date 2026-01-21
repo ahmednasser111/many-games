@@ -17,7 +17,14 @@ function initHome() {
       card.querySelector(".game-title")?.textContent || "Game",
     );
   });
-
+  document.getElementById("random-game").addEventListener("click", () => {
+    let games = [
+      "src/games/memory_game/memoryGame.html",
+      "src/games/tic-tac-toe/tic-tac-toe.html",
+    ];
+    let random = games[Math.round(Math.random() * (games.length - 1))];
+    location.href = random;
+  });
   welcomeMsg.textContent = getUserName();
 }
 
