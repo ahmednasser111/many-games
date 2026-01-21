@@ -17,13 +17,36 @@
     <button id="open-settings">
       <i class="fa-solid fa-gear"></i>
     </button>
+    <div id="settings-bg" class="hide">
+      <div id="settings-dialog">
+        <p class="settings-title">Theme</p>
+        <div id="theme-btn-cont">
+          <button id="dark-theme-btn" class="theme-btn">
+            <p>Dark Theme</p>
+            <i class="fa-regular fa-moon"></i>
+          </button>
+          <button id="light-theme-btn" class="theme-btn">
+            <p>Light Theme</p>
+            <i class="fa-regular fa-sun"></i>
+          </button>
+        </div>
+        <p class="settings-title">Username</p>
+        <div id="username-input-cont">
+          <input id="username-input" type="text" />
+          <button id="save-username">Save</button>
+        </div>
+      </div>
+    </div>
     <header>
       <h1 class="visually-hidden">Games Hub</h1>
     </header>
     <main role="main" aria-label="Games Hub">
       <div class="container" role="region" aria-label="Available Games">
         <h1>🎮 Games Hub</h1>
-        <p class="subtitle">Choose your game and have fun!</p>
+        <p class="subtitle">
+          Welcome <span id="welcome-username">Guest</span>, Choose your game and
+          have fun!
+        </p>
 
         <div class="games-grid" role="list">
           <a
@@ -68,6 +91,7 @@
         </div>
       </div>
     </main>
-    <script src="assets/js/main.js" defer></script>
+    <script type="module" src="assets/js/main.js" defer></script>
+    <script type="module" src="src/common/cookies.js" defer></script>
   </body>
 </html>

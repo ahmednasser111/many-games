@@ -9,6 +9,7 @@ import {
   endGame,
   formatDateDDMMYYYY,
 } from "./utils.js";
+
 export function buildGrid(size) {
   buildInfo();
   let grid = resizeGrid();

@@ -4,6 +4,11 @@ import { buildSettings } from "./settings-ui.js";
 import { restartGame, toClock } from "./utils.js";
 import { Cookies } from "../../../common/cookies.js";
 
+let isDark = Cookies.get("theme") == "dark";
+if (isDark) {
+  document.body.classList.add("dark-theme");
+}
+
 export const elements = {
   timeLeftText: document.getElementById("time-left"),
   progressBar: document.querySelector(".progress span"),
