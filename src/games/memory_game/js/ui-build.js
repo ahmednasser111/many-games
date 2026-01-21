@@ -20,6 +20,18 @@ export function buildGrid(size) {
   document.getElementById("pre-game").classList.add("playing");
   document.getElementById("game-play-ui").classList.add("playing");
   grid.scrollIntoView({ behavior: "smooth" });
+  let secLeft = 5;
+  document.getElementById("counter").classList.add("show");
+  document.getElementById("counter").textContent = secLeft;
+  secLeft--;
+  gameData.counter = setInterval(() => {
+    document.getElementById("counter").textContent = secLeft;
+    secLeft--;
+    if (secLeft < 0) {
+      clearInterval(gameData.counter);
+      document.getElementById("counter").classList.remove("show");
+    }
+  }, 1000);
   gameData.startGameTimer = setTimeout(() => {
     startGame(tick);
   }, 5000);
@@ -30,9 +42,15 @@ export function buildInfo() {
     elements.timeLeftText.style.display = "none";
     elements.progressBar.style.width = "100%";
   } else {
-    elements.progressBar.style.display = "block";
+    elements.timeLeftText.style.display = "flex";
     elements.progressBar.style.width = "0%";
   }
+  elements.timeLeftText.querySelector(".time").textContent = toClock(
+    gameData.timeLimitSeconds - gameData.timeElapsed,
+  );
+  document.querySelector("#elapsed-time .time").textContent = toClock(
+    gameData.timeElapsed,
+  );
   elements.livesText.textContent = `x${gameData.livesRemain}`;
 }
 export function resizeGrid() {
@@ -209,26 +227,24 @@ export function buildLeaderBoard() {
 
     mistakesDiv.append(mistakesIcon, mistakesP);
 
-    const scoreP = document.createElement("p");
-    scoreP.className = "leader-score";
-    scoreP.textContent = e.getScore();
-
     const deleteB = document.createElement("i");
     deleteB.className = "fa-solid fa-trash delete-leader-entry";
     deleteB.addEventListener("click", () => {
-      let e = entry.nextSibling;
-      while (e) {
-        let num = e.querySelector(".leader-num");
-        num.textContent = `#${+num.textContent.substring(1) - 1}`;
-        e = e.nextSibling;
+      if (confirm("Are you sure you want to delete this entry?")) {
+        let e = entry.nextSibling;
+        while (e) {
+          let num = e.querySelector(".leader-num");
+          num.textContent = `#${+num.textContent.substring(1) - 1}`;
+          e = e.nextSibling;
+        }
+        removeFromLeaderBoard(
+          +entry.querySelector(".leader-num").textContent.substring(1) - 1,
+        );
+        entry.remove();
       }
-      removeFromLeaderBoard(
-        +entry.querySelector(".leader-num").textContent.substring(1) - 1,
-      );
-      entry.remove();
     });
 
-    entry.append(leaderNum, userCont, timeDiv, mistakesDiv, scoreP, deleteB);
+    entry.append(leaderNum, userCont, timeDiv, mistakesDiv, deleteB);
     leaderBoardList.append(entry);
   });
 }
