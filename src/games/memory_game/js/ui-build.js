@@ -108,6 +108,7 @@ export function flipCard(card) {
     return;
   }
   if (!card.classList.contains("flipped")) {
+    new Audio("./sounds/flip.mp3").play();
     card.classList.add("flipped");
     if (gameData.flippedCard == undefined) {
       gameData.flippedCard = card;
@@ -115,12 +116,14 @@ export function flipCard(card) {
       if (getCardImg(gameData.flippedCard) == getCardImg(card)) {
         gameData.flippedCard.classList.add("right");
         card.classList.add("right");
+        new Audio("./sounds/correct.mp3").play();
         gameData.pairs++;
         if (gameData.pairs == (gameData.size * gameData.size) / 2) {
           endGame(true);
         }
         gameData.flippedCard = undefined;
       } else {
+        new Audio("./sounds/wrong.mp3").play();
         gameData.flipAllowed = false;
         gameData.livesRemain--;
         elements.livesText.textContent = `x${gameData.livesRemain}`;
