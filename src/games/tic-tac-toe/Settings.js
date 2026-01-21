@@ -3,10 +3,12 @@ import { Cookies } from "../../common/cookies.js";
 const SETTINGS_KEY = "manyGames_settings";
 
 const DEFAULT_SETTINGS = {
-	username: "Guest",
+	username: "Player 1",
+	player2Name: "",
 	theme: "light",
 	xColor: "#e74c3c",
 	oColor: "#3498db",
+	bestOf: 1,
 	keyboardScheme: "numpad",
 };
 
@@ -18,9 +20,9 @@ export class Settings {
 
 	load() {
 		const saved = Cookies.getJSON(SETTINGS_KEY);
-		if (saved) {
-			this._settings = { ...DEFAULT_SETTINGS, ...saved };
-		}
+		this._settings = saved
+			? { ...DEFAULT_SETTINGS, ...saved }
+			: { ...DEFAULT_SETTINGS };
 		this._applyTheme();
 		this._applyColors();
 	}

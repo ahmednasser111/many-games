@@ -9,6 +9,11 @@
 	<body>
 		<main role="main" aria-label="Tic Tac Toe">
 			<div class="container" role="region" aria-label="Game">
+				<div class="top-actions" role="group" aria-label="Actions">
+					<button class="icon-btn" id="settings-toggle" aria-label="Open settings" aria-haspopup="dialog" aria-expanded="false">⚙️</button>
+					<button class="icon-btn" id="leaderboard-toggle" aria-label="Open leaderboard" aria-haspopup="dialog" aria-expanded="false">🏆</button>
+					<button class="icon-btn" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">🌙</button>
+				</div>
 				<h1>❌ Tic Tac Toe ⭕</h1>
 
 				<div class="mode-select" role="group" aria-label="Mode Select">
@@ -25,7 +30,7 @@
 
 				<div class="score" role="region" aria-label="Scores">
 					<div class="score-item">
-						<div class="score-label">X Wins</div>
+						<div class="score-label" id="x-score-label">X Wins</div>
 						<div class="score-value" id="x-score">0</div>
 					</div>
 					<div class="score-item">
@@ -33,10 +38,11 @@
 						<div class="score-value" id="draw-score">0</div>
 					</div>
 					<div class="score-item">
-						<div class="score-label">O Wins</div>
+						<div class="score-label" id="o-score-label">O Wins</div>
 						<div class="score-value" id="o-score">0</div>
 					</div>
 				</div>
+				<div class="series-status" id="series-status" aria-live="polite"></div>
 
 				<div class="status" id="status" aria-live="polite">Player X's turn</div>
 				<div class="board" id="board"></div>
@@ -47,12 +53,63 @@
 				</div>
 			</div>
 
+			<div class="dialog-backdrop hidden" id="settings-dialog" role="dialog" aria-modal="true" aria-label="Settings">
+				<div class="dialog">
+					<div class="dialog-header">
+						<div class="dialog-title">Settings</div>
+						<button class="icon-btn" id="settings-close" aria-label="Close settings">✖</button>
+					</div>
+					<div class="dialog-body">
+						<label class="field">
+							<span class="field-label">Username</span>
+							<input id="username-input" type="text" autocomplete="nickname" />
+						</label>
+						<label class="field">
+							<span class="field-label">Player 2</span>
+							<input id="player2-input" type="text" autocomplete="nickname" />
+						</label>
+						<div class="field-row">
+							<label class="field">
+								<span class="field-label">X Color</span>
+								<input id="x-color-input" type="color" />
+							</label>
+							<label class="field">
+								<span class="field-label">O Color</span>
+								<input id="o-color-input" type="color" />
+							</label>
+						</div>
+						<label class="field">
+							<span class="field-label">Best of</span>
+							<select id="bestof-select">
+								<option value="1">Off</option>
+								<option value="3">Best of 3</option>
+								<option value="5">Best of 5</option>
+								<option value="7">Best of 7</option>
+							</select>
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="dialog-backdrop hidden" id="leaderboard-dialog" role="dialog" aria-modal="true" aria-label="Leaderboard">
+				<div class="dialog">
+					<div class="dialog-header">
+						<div class="dialog-title">Leaderboard</div>
+						<button class="icon-btn" id="leaderboard-close" aria-label="Close leaderboard">✖</button>
+					</div>
+					<div class="dialog-body">
+						<div id="leaderboard-content"></div>
+					</div>
+				</div>
+			</div>
+
 			<div class="home-link">
 				<a href="../../../index.html" aria-label="Back to Games"
 					>← Back to Games</a
 				>
 			</div>
 		</main>
-		<script src="tic-tac-toe.js" defer></script>
+		<script type="module" src="tic-tac-toe.js" defer></script>
 	</body>
 </html>
+	
