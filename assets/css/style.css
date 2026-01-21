@@ -1,6 +1,16 @@
 /* ========================================
    Layout
    ======================================== */
+:root {
+  --back-color: #667eea;
+  --back-color-2: #764ba2;
+  --secondary-color: white;
+}
+.dark-theme {
+  --back-color: #2f3ea8;
+  --back-color-2: #4b2b6f;
+  --secondary-color: #121212;
+}
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +19,11 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(
+    135deg,
+    var(--back-color) 0%,
+    var(--back-color-2) 100%
+  );
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -27,7 +41,7 @@ body {
    Typography
    ======================================== */
 h1 {
-  color: white;
+  color: var(--secondary-color);
   font-size: 3em;
   margin-bottom: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -48,6 +62,11 @@ h1 {
   font-size: 1.2em;
   margin-bottom: 50px;
 }
+
+/* ========================================
+   Settings dialog
+   ======================================== */
+
 #open-settings {
   position: fixed;
   bottom: 20px;
@@ -56,7 +75,80 @@ h1 {
   border: none;
   background-color: transparent;
   outline: none;
-  color: white;
+  color: var(--secondary-color);
+}
+#settings-bg {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#settings-bg.hide {
+  display: none;
+}
+#settings-dialog {
+  background-color: var(--secondary-color);
+  padding: 40px;
+  border-radius: 15px;
+}
+#settings-dialog .settings-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--back-color);
+}
+#theme-btn-cont {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid var(--back-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.theme-btn {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background-color: transparent;
+  border: none;
+  color: var(--back-color);
+  padding: 10px;
+  flex: 1;
+  justify-content: center;
+}
+.theme-btn.active {
+  background-color: var(--back-color);
+  color: var(--secondary-color);
+}
+#username-input-cont {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+#save-username {
+  background-color: var(--back-color);
+  border: none;
+  border-radius: 5px;
+  height: 100%;
+  padding: 0 15px;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+#username-input {
+  height: 100%;
+  border: 1px solid var(--back-color);
+  outline: none;
+  border-radius: 5px;
+  padding-left: 5px;
+  color: var(--back-color);
+  font-size: 18px;
 }
 /* ========================================
    Components
@@ -69,7 +161,7 @@ h1 {
 }
 
 .game-card {
-  background: white;
+  background: var(--secondary-color);
   border-radius: 15px;
   padding: 40px 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);

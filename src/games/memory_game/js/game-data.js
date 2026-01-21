@@ -20,10 +20,6 @@ export const gameData = {
 export function initGameSettings() {
   document.getElementById("game-grid").innerHTML = "";
   document.getElementById("game-end").classList.add("hide");
-  // gameData.images = [
-  //   "https://wallpapercave.com/wp/wp9583413.jpg",
-  //   "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/12/gojo-win.jpg?q=49&fit=crop&w=528&h=374&dpr=2",
-  // ];
   gameData.images = [];
   for (let i = 1; i <= 18; i++) {
     gameData.images.push(`./images/grid/${i}.jfif`);
