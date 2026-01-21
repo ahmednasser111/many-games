@@ -25,7 +25,8 @@
 	--o-color: #3498db;
 }
 
-[data-theme="dark"] {
+[data-theme="dark"],
+body.dark-theme {
 	--bg-start: #0f172a;
 	--bg-end: #1f2937;
 	--surface: #111827;

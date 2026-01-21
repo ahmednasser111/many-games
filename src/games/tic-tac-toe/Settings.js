@@ -3,9 +3,7 @@ import { Cookies } from "../../common/cookies.js";
 const SETTINGS_KEY = "manyGames_settings";
 
 const DEFAULT_SETTINGS = {
-	username: "Player 1",
 	player2Name: "",
-	theme: "light",
 	xColor: "#e74c3c",
 	oColor: "#3498db",
 	bestOf: 1,
@@ -23,7 +21,6 @@ export class Settings {
 		this._settings = saved
 			? { ...DEFAULT_SETTINGS, ...saved }
 			: { ...DEFAULT_SETTINGS };
-		this._applyTheme();
 		this._applyColors();
 	}
 
@@ -41,15 +38,10 @@ export class Settings {
 	 * @param {Object} updates
 	 */
 	update(updates) {
-		const oldTheme = this._settings.theme;
 		const oldXColor = this._settings.xColor;
 		const oldOColor = this._settings.oColor;
 
 		this._settings = { ...this._settings, ...updates };
-
-		if (updates.theme && updates.theme !== oldTheme) {
-			this._applyTheme();
-		}
 
 		if (updates.xColor !== oldXColor || updates.oColor !== oldOColor) {
 			this._applyColors();
@@ -57,28 +49,6 @@ export class Settings {
 
 		this.save();
 	}
-
-	// Individual getters/setters
-	get username() {
-		return this._settings.username;
-	}
-
-	set username(value) {
-		this._settings.username = value || "Guest";
-		this.save();
-	}
-
-	get theme() {
-		return this._settings.theme;
-	}
-
-	set theme(value) {
-		this._settings.theme = value;
-		this._applyTheme();
-		this.save();
-	}
-
-
 
 	get xColor() {
 		return this._settings.xColor;
@@ -114,17 +84,8 @@ export class Settings {
 	 */
 	reset() {
 		this._settings = { ...DEFAULT_SETTINGS };
-		this._applyTheme();
 		this._applyColors();
 		this.save();
-	}
-
-	/**
-	 * Apply theme to document
-	 * @private
-	 */
-	_applyTheme() {
-		document.documentElement.setAttribute("data-theme", this._settings.theme);
 	}
 
 	/**

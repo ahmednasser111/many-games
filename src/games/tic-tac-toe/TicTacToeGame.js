@@ -2,6 +2,7 @@ import { Settings } from "./Settings.js";
 import { StatsStore } from "./StatsStore.js";
 import { Series } from "./series.js";
 import { renderLeaderboard } from "./leaderboard.js";
+import { Cookies } from "../../common/cookies.js";
 
 export class TicTacToeGame {
 	constructor() {
@@ -27,6 +28,7 @@ export class TicTacToeGame {
 	}
 
 	init() {
+		this._applyGlobalTheme();
 		this._wireDialogs();
 		this._applySettingsToUI();
 		this._initSeriesFromSettings();
@@ -43,6 +45,17 @@ export class TicTacToeGame {
 		return this.settings.getAll();
 	}
 
+	_getGlobalUsername() {
+		let user = (Cookies.get("username") || "").trim();
+		if (user === "") user = "Guest";
+		return user;
+	}
+
+	_applyGlobalTheme() {
+		const isDark = Cookies.get("theme") === "dark";
+		document.body.classList.toggle("dark-theme", isDark);
+	}
+
 	_getPlayerName(symbol) {
 		const s = this._getSettings();
 		if (symbol === "X") return s.username || "Guest";
@@ -53,27 +66,14 @@ export class TicTacToeGame {
 	_updateScoreLabels() {
 		const xLabel = document.getElementById("x-score-label");
 		const oLabel = document.getElementById("o-score-label");
-		if (xLabel) xLabel.textContent = `${this._getPlayerName("X")} (X) Wins`;
+		if (xLabel) xLabel.textContent = `${this._getGlobalUsername()} (X) Wins`;
 		if (oLabel) oLabel.textContent = `${this._getPlayerName("O")} (O) Wins`;
-	}
-
-	_updateThemeToggleIcon() {
-		const s = this._getSettings();
-		const btn = document.getElementById("theme-toggle");
-		if (!btn) return;
-		const isDark = s.theme === "dark";
-		btn.textContent = isDark ? "☀️" : "🌙";
-		btn.setAttribute("aria-pressed", isDark ? "true" : "false");
-		btn.setAttribute(
-			"aria-label",
-			isDark ? "Toggle light mode" : "Toggle dark mode"
-		);
 	}
 
 	_detectPlayer2Name() {
 		const s = this._getSettings();
 		if (s.player2Name && s.player2Name.trim()) return;
-		const me = (s.username || "Guest").trim();
+		const me = this._getGlobalUsername();
 		const history = this.statsStore.getHistory().slice().reverse();
 		for (const match of history) {
 			const x = match.players?.x?.name;
@@ -93,19 +93,16 @@ export class TicTacToeGame {
 	_applySettingsToUI() {
 		this._detectPlayer2Name();
 		const s = this._getSettings();
-		const usernameInput = document.getElementById("username-input");
 		const player2Input = document.getElementById("player2-input");
 		const xColorInput = document.getElementById("x-color-input");
 		const oColorInput = document.getElementById("o-color-input");
 		const bestOfSelect = document.getElementById("bestof-select");
 
-		if (usernameInput) usernameInput.value = s.username || "Guest";
 		if (player2Input) player2Input.value = s.player2Name || "";
 		if (xColorInput) xColorInput.value = s.xColor;
 		if (oColorInput) oColorInput.value = s.oColor;
 		if (bestOfSelect) bestOfSelect.value = String(s.bestOf || 1);
 
-		this._updateThemeToggleIcon();
 		this._updateScoreLabels();
 	}
 
@@ -135,7 +132,6 @@ export class TicTacToeGame {
 	_wireDialogs() {
 		const settingsToggle = document.getElementById("settings-toggle");
 		const leaderboardToggle = document.getElementById("leaderboard-toggle");
-		const themeToggle = document.getElementById("theme-toggle");
 
 		const settingsDialog = document.getElementById("settings-dialog");
 		const leaderboardDialog = document.getElementById("leaderboard-dialog");
@@ -187,25 +183,6 @@ export class TicTacToeGame {
 			leaderboardDialog.addEventListener("click", (e) => {
 				if (e.target === leaderboardDialog)
 					closeDialog(leaderboardDialog, leaderboardToggle);
-			});
-		}
-
-		if (themeToggle) {
-			themeToggle.addEventListener("click", () => {
-				const s = this._getSettings();
-				const next = s.theme === "dark" ? "light" : "dark";
-				this.settings.update({ theme: next });
-				this._updateThemeToggleIcon();
-			});
-		}
-
-		const usernameInput = document.getElementById("username-input");
-		if (usernameInput) {
-			usernameInput.addEventListener("input", () => {
-				this.settings.update({ username: usernameInput.value });
-				this._updateScoreLabels();
-				this.updateStatus();
-				this._updateSeriesStatus();
 			});
 		}
 
